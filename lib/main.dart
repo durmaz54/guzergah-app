@@ -3,26 +3,8 @@ import 'package:guzergah/home/view/home_view.dart';
 import 'package:guzergah/home/services/client.dart';
 
 void main() {
-  //Isolate.spawn(test, viewModel);
   runApp(MyApp());
 }
-
-/*
-
-void test(HomeViewModel model) async {
-  while (true) {
-    var url = 'http://127.0.0.1:5000/map';
-    var response = await http.get(Uri.parse(url));
-    if (response.statusCode != 404) {
-      model.changeImage(url);
-      print(response.statusCode);
-    }
-  }
-}
-
-void handleTimeout() {
-  print("timeout callback");
-} */
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,18 +16,22 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("data"),
-          actions: [
-            StreamBuilder(
-                stream: Client.ping(),
-                builder: (context, snapshot) {
-                  return Text(snapshot.data.toString());
-                })
-          ],
-        ),
+        appBar: newAppBar(),
         body: HomeView(),
       ),
+    );
+  }
+
+  AppBar newAppBar() {
+    return AppBar(
+      title: Text("data"),
+      actions: [
+        StreamBuilder(
+            stream: Client.ping(),
+            builder: (context, snapshot) {
+              return Text(snapshot.data.toString());
+            })
+      ],
     );
   }
 }
