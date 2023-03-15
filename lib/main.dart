@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: newAppBar(),
+        //appBar: newAppBar(),
         body: HomeView(),
       ),
     );
