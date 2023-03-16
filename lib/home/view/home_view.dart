@@ -20,29 +20,42 @@ class HomeView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width / 100;
     return Container(
       decoration: BoxDecoration(
-        gradient: RadialGradient(
-            radius: 0.2, colors: [Colors.black38, Colors.black87]),
-      ),
+          gradient: RadialGradient(colors: [
+        Color.fromARGB(255, 23, 26, 33),
+        Color.fromARGB(235, 23, 26, 33),
+      ])),
       child: Column(
         children: [
           TopBar(height: height * 15, width: width * 100),
-          SizedBox(
-            height: height * 10,
-          ),
           Row(
             children: [
-              Spacer(),
-              Center(
-                  child: Column(
+              SizedBox(
+                width: width * 5,
+              ),
+              Column(
                 children: [
-                  RealTimeMap(height: height * 45, width: width * 45),
-                  SizedBox(
-                    height: height * 5,
-                  ),
-                  PingView(height: height, width: width, state: false),
+                  TaskWidget(
+                      viewModel: _viewModel,
+                      height: height * 20,
+                      width: width * 20),
+                  Terminal(height: height * 20, widht: width * 20),
                 ],
-              )),
-              Spacer()
+              ),
+              SizedBox(
+                width: width * 5,
+              ),
+              RealTimeMap(
+                  height: height * 60, width: width * 40, clr: Colors.orange),
+              SizedBox(
+                width: width * 5,
+              ),
+              TaskWidget(
+                  viewModel: _viewModel,
+                  height: height * 20,
+                  width: width * 20),
+              SizedBox(
+                width: width * 5,
+              ),
             ],
           ),
         ],

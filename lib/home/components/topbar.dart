@@ -26,21 +26,9 @@ class TopBar extends StatelessWidget {
           ),
           Spacer(),
           newText(),
-          SizedBox(
-            width: sBoxWidth,
-          ),
           newText(),
-          SizedBox(
-            width: sBoxWidth,
-          ),
           newText(),
-          SizedBox(
-            width: sBoxWidth,
-          ),
           newText(),
-          SizedBox(
-            width: sBoxWidth,
-          )
         ],
       ),
     );

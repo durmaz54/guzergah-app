@@ -5,7 +5,14 @@ import 'dart:convert';
 
 class RealTimeMap extends StatelessWidget {
   final height, width;
-  const RealTimeMap({Key? key, required this.height, required this.width});
+  final clr;
+
+  const RealTimeMap(
+      {Key? key,
+      required this.height,
+      required this.width,
+      this.clr = Colors.grey});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,6 +26,7 @@ class RealTimeMap extends StatelessWidget {
                   var decode = base64.decode(snapshot.data!.image
                       .toString()
                       .replaceAll(RegExp(r'\s+'), ''));
+
                   return Container(
                       child: errorWidget(Image.memory(decode,
                           gaplessPlayback:
@@ -34,21 +42,21 @@ class RealTimeMap extends StatelessWidget {
 
   Widget errorWidget(Image img) {
     return CustomPaint(
-      painter: MapPainter(clr: Colors.green),
+      painter: MapPainter(clr: clr),
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(width: 5, color: Colors.green),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.green
-                    .withAlpha(100), // Color.fromARGB(255, 161, 146, 5)
-                blurRadius: 30.0,
-                spreadRadius: 10.0,
-                offset: Offset(8, 8),
-              ),
-            ],
-            image: DecorationImage(image: img.image, fit: BoxFit.cover),
-            borderRadius: BorderRadius.circular(20)),
+          shape: BoxShape.circle,
+          border: Border.all(width: 7, color: Colors.red.withOpacity(0)),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 161, 146, 5),
+              blurRadius: 50.0,
+              spreadRadius: 0.0,
+              offset: Offset(0, 0),
+            ),
+          ],
+          image: DecorationImage(image: img.image, fit: BoxFit.cover),
+        ),
       ),
     );
   }

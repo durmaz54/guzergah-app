@@ -5,8 +5,13 @@ import 'package:guzergah/home/view-model/home_view_model.dart';
 
 class TaskWidget extends StatefulWidget {
   HomeViewModel viewModel;
+  final height, width;
 
-  TaskWidget({super.key, required this.viewModel});
+  TaskWidget(
+      {super.key,
+      required this.viewModel,
+      required this.height,
+      required this.width});
 
   @override
   State<TaskWidget> createState() => _TaskWidgetState();
@@ -18,29 +23,22 @@ class _TaskWidgetState extends State<TaskWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Color(0xC9D7E0),
+      decoration: BoxDecoration(
+          color: Colors.red.withOpacity(0),
+          border: Border.all(color: Colors.red, width: 2)),
+      height: widget.height,
+      width: widget.width,
       child: Column(
         children: [
           Card(
             child: Row(
               children: [
-                Text("Görev"),
+                Text("Görevler"),
+                newButton("Ekle"),
                 Spacer(),
-                ElevatedButton(
-                  child: Text("Görev Ekle"),
-                  onPressed: () {
-                    setState(() {
-                      taskListIndex += 1;
-                      widget.viewModel.changeTask(
-                          taskListIndex, [statPosition.A, statJob.none]);
-                    });
-                  },
-                ),
+                newButton("Başlat"),
                 Spacer(),
-                ElevatedButton(
-                    onPressed: () {}, child: Text("Görevleri Başlat")),
-                Spacer(),
-                ElevatedButton(onPressed: () {}, child: Text("Durdur")),
+                newButton("Durdur"),
                 Spacer()
               ],
             ),
@@ -53,18 +51,40 @@ class _TaskWidgetState extends State<TaskWidget> {
                     return TaskItem(
                       viewModel: widget.viewModel,
                       index: index,
+                      height: widget.height,
+                      width: widget.width,
                     );
                   })),
         ],
       ),
     );
   }
+
+  ElevatedButton newButton(String txt) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent),
+      child: Text(txt, style: TextStyle(fontSize: 10)),
+      onPressed: () {
+        setState(() {
+          taskListIndex += 1;
+          widget.viewModel
+              .changeTask(taskListIndex, [statPosition.A, statJob.none]);
+        });
+      },
+    );
+  }
 }
 
 class TaskItem extends StatefulWidget {
   HomeViewModel viewModel;
+  final height, width;
   final index;
-  TaskItem({super.key, required this.viewModel, @required this.index});
+  TaskItem(
+      {super.key,
+      required this.viewModel,
+      required this.index,
+      required this.height,
+      required this.width});
 
   @override
   State<TaskItem> createState() => _TaskItemState();
@@ -77,17 +97,13 @@ class _TaskItemState extends State<TaskItem> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Text(widget.index.toString()),
-        title: Row(
-          children: [
-            Expanded(child: drowDownPositionWidget()),
-            Expanded(child: drowDownJobsWidget()),
-          ],
-        ),
-        trailing: Icon(
-          Icons.circle,
-          color: Colors.grey,
-        ));
+      title: Row(
+        children: [
+          drowDownPositionWidget(),
+          drowDownJobsWidget(),
+        ],
+      ),
+    );
   }
 
   DropdownButton<dynamic> drowDownPositionWidget() {

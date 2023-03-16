@@ -5,12 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:guzergah/home/services/client.dart';
 
 class Terminal extends StatelessWidget {
+  final height, widht;
+  Terminal({required this.height, required this.widht});
   var _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black87,
+      decoration: BoxDecoration(
+        color: Color(0x2F4551),
+        border: Border.all(
+            style: BorderStyle.solid, width: 1, color: Colors.black26),
+      ),
+      height: height,
+      width: widht,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

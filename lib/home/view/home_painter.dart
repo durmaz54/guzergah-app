@@ -43,37 +43,25 @@ class MapPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..style = PaintingStyle.stroke
-      ..color = clr
+      ..color = Colors.white12
       ..strokeWidth = 1;
 
     var paint2 = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Color.fromARGB(255, 161, 146, 5)
-      ..strokeWidth = 1;
+      ..color = Colors.orange.withOpacity(1)
+      ..strokeWidth = 13;
 
     final zzHeight = size.height / 20;
     final zzWidth = size.width / 20;
 
-    Offset start = Offset(zzWidth * 5, zzHeight * 20);
-    Offset end = Offset(zzWidth * 2, zzHeight * 25);
-    canvas.drawLine(start, end, paint);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), zzHeight * 10.5, paint2);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), zzHeight * 12.3, paint);
+    canvas.drawCircle(
+        Offset(size.width / 2, size.height / 2), zzHeight * 12.8, paint);
 
-    start = Offset(zzWidth * 2, zzHeight * 25);
-    end = Offset(zzWidth * 2, zzHeight * 35);
-    canvas.drawLine(start, end, paint);
-
-    start = Offset(zzWidth * 15, zzHeight * 20);
-    end = Offset(zzWidth * 18, zzHeight * 25);
-    canvas.drawLine(start, end, paint);
-
-    start = Offset(zzWidth * 18, zzHeight * 25);
-    end = Offset(zzWidth * 18, zzHeight * 35);
-    canvas.drawLine(start, end, paint);
-
-    //orta yatay çizgi
-    start = Offset(zzWidth * 4, zzHeight * 25);
-    end = Offset(zzWidth * 16, zzHeight * 25);
-    canvas.drawLine(start, end, paint2);
+    //canvas.drawShadow(path, color, elevation, transparentOccluder);
   }
 
   @override
