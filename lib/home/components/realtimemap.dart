@@ -45,7 +45,6 @@ class RealTimeMap extends StatelessWidget {
       painter: MapPainter(clr: clr),
       child: Container(
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
           border: Border.all(width: 7, color: Colors.red.withOpacity(0)),
           boxShadow: [
             BoxShadow(

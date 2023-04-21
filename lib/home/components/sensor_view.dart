@@ -5,11 +5,6 @@ class SensorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.red, Color(0x433D40)])),
         child: StreamBuilder(
             stream: Client.readData(),
             builder: (context, snapshot) {
@@ -60,14 +55,11 @@ class SensorView extends StatelessWidget {
     final width = MediaQuery.of(context).size.width * 0.15;
     return Center(
         child: Container(
-      height: height,
-      width: width,
       color: clr,
       child: Row(
         children: [
           Icon(
             Icons.ac_unit,
-            size: height * 0.5,
             color: Color(0xff6d2af7),
           ),
         ],

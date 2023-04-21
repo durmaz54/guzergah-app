@@ -25,21 +25,24 @@ class _TaskWidgetState extends State<TaskWidget> {
     return Container(
       decoration: BoxDecoration(
           color: Colors.red.withOpacity(0),
-          border: Border.all(color: Colors.red, width: 2)),
+          border: Border.all(color: Colors.grey, width: 2),
+          borderRadius: BorderRadius.circular(15)),
       height: widget.height,
       width: widget.width,
       child: Column(
         children: [
-          Card(
+          Container(
             child: Row(
               children: [
-                Text("Görevler"),
+                Container(
+                  child: Text(
+                    "Görevler",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
                 newButton("Ekle"),
-                Spacer(),
                 newButton("Başlat"),
-                Spacer(),
                 newButton("Durdur"),
-                Spacer()
               ],
             ),
           ),
@@ -60,10 +63,10 @@ class _TaskWidgetState extends State<TaskWidget> {
     );
   }
 
-  ElevatedButton newButton(String txt) {
+  Widget newButton(String txt) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(backgroundColor: Colors.transparent),
-      child: Text(txt, style: TextStyle(fontSize: 10)),
+      child: Text(txt),
       onPressed: () {
         setState(() {
           taskListIndex += 1;
@@ -99,6 +102,7 @@ class _TaskItemState extends State<TaskItem> {
     return ListTile(
       title: Row(
         children: [
+          Expanded(child: Text("data")),
           drowDownPositionWidget(),
           drowDownJobsWidget(),
         ],
@@ -121,8 +125,6 @@ class _TaskItemState extends State<TaskItem> {
           DropdownMenuItem(value: statPosition.B, child: Text("B")),
           DropdownMenuItem(value: statPosition.C, child: Text("C")),
           DropdownMenuItem(value: statPosition.D, child: Text("D")),
-          DropdownMenuItem(value: statPosition.E, child: Text("E")),
-          DropdownMenuItem(value: statPosition.F, child: Text("F")),
         ]);
   }
 

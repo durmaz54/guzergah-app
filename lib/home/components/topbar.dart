@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class TopBar extends StatelessWidget {
   final height, width;
@@ -25,37 +23,38 @@ class TopBar extends StatelessWidget {
             ),
           ),
           Spacer(),
-          newText(),
-          newText(),
-          newText(),
-          newText(),
+          newText("Anasayfa"),
+          newText("Log Kayıtları"),
+          newText("Araçlar"),
+          newText("Ayarlar"),
         ],
       ),
     );
   }
 
-  Widget newText() {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        shadowColor: Colors.black,
-        elevation: 5,
-      ),
-      onPressed: () {},
+  Widget newText(String txt) {
+    return GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: () => print("ssssssss"),
       child: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0),
-              blurRadius: 4,
-              offset: Offset(4, 8), // changes position of shadow
+        child: Row(
+          children: [
+            Icon(
+              Icons.home,
+              size: 30,
+            ),
+            SizedBox(
+              width: width * 0.01,
+            ),
+            Text(
+              txt,
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(
+              width: width * 0.03,
             ),
           ],
         ),
-        child: Text("Test",
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: height * 0.2,
-            )),
       ),
     );
   }

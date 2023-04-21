@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class HomePainter extends CustomPainter {
   @override
@@ -43,8 +44,8 @@ class MapPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
       ..style = PaintingStyle.stroke
-      ..color = Colors.white12
-      ..strokeWidth = 1;
+      ..color = Colors.orange.withOpacity(1)
+      ..strokeWidth = 10;
 
     var paint2 = Paint()
       ..style = PaintingStyle.stroke
@@ -54,14 +55,39 @@ class MapPainter extends CustomPainter {
     final zzHeight = size.height / 20;
     final zzWidth = size.width / 20;
 
-    canvas.drawCircle(
-        Offset(size.width / 2, size.height / 2), zzHeight * 10.5, paint2);
-    canvas.drawCircle(
-        Offset(size.width / 2, size.height / 2), zzHeight * 12.3, paint);
-    canvas.drawCircle(
-        Offset(size.width / 2, size.height / 2), zzHeight * 12.8, paint);
-
+    Rect rect = Rect.fromLTWH(0, 0, zzWidth * 20, zzHeight * 20);
+    canvas.drawRect(rect, paint);
     //canvas.drawShadow(path, color, elevation, transparentOccluder);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false;
+  }
+}
+
+class StartButtonPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..color = Colors.orange
+      //background color
+      ..color = Colors.green
+      ..strokeWidth = 2;
+
+    final zzHeight = size.height / 20;
+    final zzWidth = size.width / 20;
+
+    Path path = Path()
+      ..addPolygon([
+        Offset(0, 0),
+        Offset(zzWidth * 3, zzHeight * 20),
+        Offset(zzWidth * 17, zzHeight * 20),
+        Offset(zzWidth * 20, zzHeight)
+      ], true)
+      ..close();
+    canvas.drawPath(path, paint);
   }
 
   @override
